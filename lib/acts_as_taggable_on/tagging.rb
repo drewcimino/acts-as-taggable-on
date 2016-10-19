@@ -14,7 +14,8 @@ module ActsAsTaggableOn
     validates_presence_of :context
     validates_presence_of :tag_id
 
-    validates_uniqueness_of :tag_id, scope: [:taggable_type, :taggable_id, :context, :tagger_id, :tagger_type]
+    # We're running this validation in ReportTagging with a different scope -DC
+    # validates_uniqueness_of :tag_id, scope: [:taggable_type, :taggable_id, :context, :tagger_id, :tagger_type]
 
     after_destroy :remove_unused_tags
 
