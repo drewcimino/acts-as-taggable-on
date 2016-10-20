@@ -1,6 +1,7 @@
 module ActsAsTaggableOn
   class Tagging < ::ActiveRecord::Base #:nodoc:
-    belongs_to :tag, class_name: '::ActsAsTaggableOn::Tag', counter_cache: ActsAsTaggableOn.tags_counter
+    belongs_to :tag, counter_cache: ActsAsTaggableOn.tags_counter
+
     belongs_to :taggable, polymorphic: true
 
     belongs_to :tagger, {polymorphic: true}.tap {|o| o.merge!(optional: true) if ActsAsTaggableOn::Utils.active_record5? }
